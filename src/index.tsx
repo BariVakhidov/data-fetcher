@@ -1,7 +1,16 @@
 import React from 'react';
 import { render } from 'react-dom';
-import styles from './styles.module.scss';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import App from './App';
+//import store from './redux/store';
 
-const App = () => <div className={styles.test}>Hello world</div>;
+const AppContainer = () => (
+  <React.StrictMode>
+    <BrowserRouter>      
+        <App />
+    </BrowserRouter>
+  </React.StrictMode>
+);
 
-render(App(), document.getElementById('root'));
+render(AppContainer(), document.getElementById('root'));
