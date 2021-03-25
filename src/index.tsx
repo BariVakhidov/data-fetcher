@@ -1,7 +1,14 @@
 import React from 'react';
 import { render } from 'react-dom';
-import styles from './styles.module.scss';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
 
-const App = () => <div className={styles.test}>Hello world</div>;
+const AppContainer = () => (
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
+);
 
-render(App(), document.getElementById('root'));
+render(AppContainer(), document.getElementById('root'));
