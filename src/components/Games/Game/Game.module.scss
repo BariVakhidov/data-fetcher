@@ -1,0 +1,41 @@
+.game {
+  height: 250px;
+  width: 300px;
+  background-color: #FBEEC1;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 5px rgba(138, 138, 138, 0.4);
+  .gameCont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    .gameTeams{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 100%;
+      .side {
+        background-color: rgb(250, 95, 95);
+        width: 50%;
+        height: 150px;
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+        .dateCont {
+          display: flex;
+          align-items: center;
+        }
+        span {
+          display: block;
+          margin: 10px;
+          text-align: center;
+      }
+    }
+    }
+  }
+}

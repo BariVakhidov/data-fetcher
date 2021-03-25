@@ -1,0 +1,28 @@
+.teams {
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  .title {
+    font-weight: 600;
+      font-size: 25px;
+      line-height: 23px;
+      text-align: right;
+      letter-spacing: -0.408px;
+      color: #2c2c2c;
+      margin: 20px 15px;
+  }
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+  .teamsContainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+  }
+}
