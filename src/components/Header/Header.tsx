@@ -1,14 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { navItems } from '../../constants';
 import s from './Header.module.scss';
-
-const listItems = [
-  { to: '/dashboard', name: 'Dashboard' },
-  { to: '/teams', name: 'Teams' },
-  { to: '/not-found', name: 'Stats' },
-  { to: '/not-found', name: 'Players' },
-  { to: '/not-found', name: 'Season Averages' },
-];
 
 const Header: React.FC = () => (
   <header>
@@ -17,7 +10,7 @@ const Header: React.FC = () => (
         <img src="../assets/images/icon.png" alt="logo" height={40} />
       </NavLink>
       <ul>
-        {listItems.map((item) => (
+        {navItems.map((item) => (
           <li key={item.name}>
             <NavLink to={item.to}>{item.name}</NavLink>
           </li>
