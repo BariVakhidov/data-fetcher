@@ -1,3 +1,4 @@
+import { batch } from 'react-redux';
 import { Team, TeamsState } from '../types/interfaces';
 import { AppThunk } from './store';
 import { teamsAPI } from '../api/api';
@@ -14,14 +15,13 @@ export enum Actions {
   SET_ERROR = 'data-fetcher/teams/SET_ERROR',
 }
 
-export const setTeams = (teams: Array<Team>): TeamsReducerActions => ({ type: Actions.SET_TEAMS, teams });
+export const setTeams = (teams: Array<Team>, totalTeams:number): TeamsReducerActions => ({ type: Actions.SET_TEAMS, teams, totalTeams });
 export const setPage = (): TeamsReducerActions => ({ type: Actions.SET_PAGE });
 export const toggleIsFetching = (isFetching:boolean): TeamsReducerActions => ({ type: Actions.TOGGLE_IS_FETCHING, isFetching });
 export const setShowingTeamId = (showingTeamId: number): TeamsReducerActions => ({ type: Actions.SET_SHOWING_TEAM_ID, showingTeamId });
 export const setShowingTeam = (showingTeam: Team): TeamsReducerActions => ({ type: Actions.SET_SHOWING_TEAM, showingTeam });
 export const setCurrentPage = (pageNumber: number): TeamsReducerActions => ({ type: Actions.SET_CURRENT_PAGE, pageNumber });
 export const setError = (error:string):TeamsReducerActions => ({ type: Actions.SET_ERROR, error });
-export const setTotalTeams = (totalTeams: number): TeamsReducerActions => ({ type: Actions.SET_TOTAL_TEAMS, totalTeams });
 
 const initialState: TeamsState = {
   teams: [],
@@ -46,10 +46,7 @@ const teamsReducer = (state: TeamsState = initialState,
       return {
         ...state,
         teams: action.teams,
-      };
-    case Actions.SET_TOTAL_TEAMS:
-      return {
-        ...state, totalTeams: action.totalTeams,
+        totalTeams: action.totalTeams,
       };
     case Actions.TOGGLE_IS_FETCHING:
       return {
@@ -86,12 +83,15 @@ export const requestTeams = (currentPage:number, pageSize:number):AppThunk => as
   dispatch(toggleIsFetching(true));
   try {
     const response = await teamsAPI.getTeams(currentPage, pageSize);
-    dispatch(setTeams(response.data.data));
-    dispatch(setTotalTeams(response.data.meta.totalCount));
+    batch(() => {
+      dispatch(setTeams(response.data.data, response.data.meta.totalCount));
+      dispatch(toggleIsFetching(false));
+    });
   } catch (error) {
-    dispatch(setError(error.message));
-  } finally {
-    dispatch(toggleIsFetching(false));
+    batch(() => {
+      dispatch(setError(error.message));
+      dispatch(toggleIsFetching(false));
+    });
   }
 };
 
@@ -99,10 +99,14 @@ export const requestTeam = (teamId: number):AppThunk => async (dispatch) => {
   dispatch(toggleIsFetching(true));
   try {
     const data = await teamsAPI.getTeam(teamId);
-    dispatch(setShowingTeam(data));
+    batch(() => {
+      dispatch(setShowingTeam(data));
+      dispatch(toggleIsFetching(false));
+    });
   } catch (error) {
-    dispatch(setError(error.message));
-  } finally {
-    dispatch(toggleIsFetching(false));
+    batch(() => {
+      dispatch(setError(error.message));
+      dispatch(toggleIsFetching(false));
+    });
   }
 };

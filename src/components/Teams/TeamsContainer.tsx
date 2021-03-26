@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { RouteComponentProps, withRouter } from "react-router";
-import { TeamsState } from "../../types/interfaces";
-import { AppDispatch, RootState } from "../../redux/store";
+import { RouteComponentProps, withRouter } from 'react-router';
+import { TeamsContainerProps, TeamsState } from '../../types/interfaces';
+import { RootState } from '../../redux/store';
 import {
   requestTeam,
   requestTeams,
   setShowingTeamId,
-} from "../../redux/teams-reducer";
-import Teams from "./Teams";
+} from '../../redux/teams-reducer';
+import Teams from './Teams';
 
-const TeamsContainer = ({
+const TeamsContainer:React.FC<TeamsContainerProps> = ({
   match,
   teams,
   totalTeams,
@@ -21,9 +21,9 @@ const TeamsContainer = ({
   requestTeams,
   requestTeam,
   showingTeamId,
-  error
+  error,
 }) => {
-  let teamId: number | undefined = match.params.teamId;
+  const { teamId } = match.params;
 
   useEffect(() => {
     if (teams.length === 0 && !teamId) requestTeams(currentPage, 8);
@@ -40,24 +40,22 @@ const TeamsContainer = ({
       totalTeams={totalTeams}
       requestTeams={requestTeams}
       pageSize={pageSize}
-      requestTeam = {requestTeam}
-      error= {error}
+      requestTeam={requestTeam}
+      error={error}
     />
   );
 };
 
-let mapStateToProps = (state: RootState): TeamsState => {
-  return {
-    teams: state.teams.teams,
-    totalTeams: state.teams.totalTeams,
-    currentPage: state.teams.currentPage,
-    isFetching: state.teams.isFetching,
-    showingTeamId: state.teams.showingTeamId,
-    showingTeam: state.teams.showingTeam,
-    pageSize: 10,
-    error: state.teams.error
-  };
-};
+const mapStateToProps = (state: RootState): TeamsState => ({
+  teams: state.teams.teams,
+  totalTeams: state.teams.totalTeams,
+  currentPage: state.teams.currentPage,
+  isFetching: state.teams.isFetching,
+  showingTeamId: state.teams.showingTeamId,
+  showingTeam: state.teams.showingTeam,
+  pageSize: 10,
+  error: state.teams.error,
+});
 
 const TeamsContWhithRouter = withRouter<RouteComponentProps>(TeamsContainer);
 

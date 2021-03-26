@@ -1,3 +1,5 @@
+import { RouteComponentProps } from 'react-router';
+
 export interface Team {
   id: number;
   abbreviation: string;
@@ -61,4 +63,10 @@ export interface TeamsProps extends TeamsState {
 
 export interface TeamProps extends Team {
   isTeamPage: boolean
+}
+
+export interface TeamsContainerProps extends TeamsState {
+  requestTeams: (currentPage: number, pageSize: number) => void;
+  requestTeam: (teamId:number)=> void,
+  match: RouteComponentProps,
 }

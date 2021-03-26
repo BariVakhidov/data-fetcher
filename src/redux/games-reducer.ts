@@ -10,7 +10,7 @@ export enum Actions {
   SET_PAGE = 'data-fetcher/games/SET_PAGE',
   SET_START_DATE = 'data-fetcher/games/SET_START_DATE',
   SET_END_DATE = 'data-fetcher/games/SET_END_DATE',
-  SET_CURRENT_PAGE = 'data-fetcher/games/SbatchET_CURRENT_PAGE',
+  SET_CURRENT_PAGE = 'data-fetcher/games/SET_CURRENT_PAGE',
   SET_TOTAL_GAMES = 'data-fetcher/games/SET_TOTAL_GAMES',
   TOGGLE_IS_FETCHING = 'data-fetcher/games/TOGGLE_IS_FETCHING',
   SET_ERROR = 'data-fetcher/games/SET_ERROR',
@@ -132,10 +132,10 @@ export const requestGames = (
     batch(() => {
       dispatch(setGames(response.data.data));
       dispatch(setTotalGames(response.data.meta.totalCount));
+      dispatch(toggleIsFetching(false));
     });
   } catch (error) {
     dispatch(setError(error.message));
-  } finally {
     dispatch(toggleIsFetching(false));
   }
 };

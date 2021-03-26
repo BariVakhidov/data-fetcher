@@ -4,6 +4,7 @@ import { Team } from './interfaces';
 interface SetTeams {
   type: typeof Actions.SET_TEAMS;
   teams: Array<Team>;
+  totalTeams: number;
 }
 
 interface ToggleIsFetching {
@@ -18,11 +19,6 @@ interface SetPage {
 interface SetCurrentPage {
   type: typeof Actions.SET_CURRENT_PAGE;
   pageNumber: number;
-}
-
-interface SetTotalTeams {
-  type: typeof Actions.SET_TOTAL_TEAMS;
-  totalTeams: number;
 }
 
 interface SetShowingTeamId {
@@ -42,7 +38,6 @@ export type TeamsReducerActions =
   | SetTeams
   | SetCurrentPage
   | SetPage
-  | SetTotalTeams
   | SetShowingTeamId
   | SetShowingTeam
   | ToggleIsFetching

@@ -18,7 +18,6 @@ const GamesContainer:React.FC = () => {
   useEffect(() => {
     if (games.length === 0) dispatch(requestGames(currentPage, 6, (startDate), (endDate)));
   }, []);
-
   return (
     <>
       <Games

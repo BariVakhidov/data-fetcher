@@ -42,7 +42,6 @@ const Teams: React.FC<TeamsProps> = ({
       />
     );
   }
-
   return (
     <div className={s.teams}>
       <span className={s.title}>Teams</span>
