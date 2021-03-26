@@ -24,10 +24,10 @@ const GameComponent: React.FC<Game> = ({
                 : 'rgb(250, 95, 95)',
             }}
           >
-            <span><NavLink to={`/teams/${homeTeam.id}`}>{homeTeam.fullName}</NavLink></span>
-            <span>{homeTeamScore}</span>
+            <div className={s.name}><NavLink to={`/teams/${homeTeam.id}`}>{homeTeam.fullName}</NavLink></div>
+            <div className={s.score}>{homeTeamScore}</div>
           </div>
-          :
+          <span>:</span>
           <div
             className={s.side}
             style={{
@@ -36,8 +36,8 @@ const GameComponent: React.FC<Game> = ({
                 : 'rgb(153, 228, 153)',
             }}
           >
-            <NavLink to={`/teams/${visitorTeam.id}`}><span>{visitorTeam.fullName}</span></NavLink>
-            <span>{visitorTeamScore}</span>
+            <div className={s.name}><NavLink to={`/teams/${visitorTeam.id}`}>{visitorTeam.fullName}</NavLink></div>
+            <div className={s.score}>{visitorTeamScore}</div>
           </div>
         </div>
         <span>

@@ -1,7 +1,7 @@
 .game {
   height: 250px;
   width: 300px;
-  background-color: #FBEEC1;
+  background-color: #fbeec1;
   margin: 20px;
   padding: 20px;
   border-radius: 20px;
@@ -11,31 +11,40 @@
     flex-direction: column;
     align-items: center;
     height: 100%;
-    .gameTeams{
-      display: flex;
-      flex-direction: row;
-      align-items: center;
+    .gameTeams {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 45% 10% 45%;
+      grid-template-rows: 100%;
       height: 100%;
+      text-align: center;
+      span {
+        align-self: center;
+      } 
       .side {
+        align-self: center;
         background-color: rgb(250, 95, 95);
-        width: 50%;
+        width: 100%;
         height: 150px;
-        margin: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 70% 30%;
         border-radius: 20px;
-        .dateCont {
-          display: flex;
-          align-items: center;
-        }
-        span {
-          display: block;
-          margin: 10px;
+        .name {
+          margin: 0 10px;
+          justify-self: center;
+          align-self: center;
           text-align: center;
+        }
+        .score {
+          justify-self: center;
+          align-self: center;
+        }
       }
-    }
+      .dateCont {
+        display: flex;
+        align-items: center;
+      }
     }
   }
 }
