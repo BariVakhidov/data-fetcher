@@ -5,8 +5,7 @@ import { Game } from '../../types/interfaces';
 import { RootState } from '../../redux/store';
 import Games from './Games';
 
-const GamesContainer:React.FC =() => {
-
+const GamesContainer:React.FC = () => {
   const games:Array<Game> = useSelector((state:RootState) => state.games.games);
   const totalGames:number = useSelector((state:RootState) => state.games.totalGames);
   const currentPage:number = useSelector((state:RootState) => state.games.currentPage);
@@ -17,14 +16,21 @@ const GamesContainer:React.FC =() => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-      if (games.length === 0)
-      dispatch(requestGames(currentPage, 6, (startDate), (endDate)));
+    if (games.length === 0) dispatch(requestGames(currentPage, 6, (startDate), (endDate)));
   }, []);
 
-  return (<>
-    <Games games={games} currentPage={currentPage} totalGames={totalGames} isFetching={isFetching}
-         startDate={startDate} endDate={endDate} error={error}/>
-        </>
+  return (
+    <>
+      <Games
+        games={games}
+        currentPage={currentPage}
+        totalGames={totalGames}
+        isFetching={isFetching}
+        startDate={startDate}
+        endDate={endDate}
+        error={error}
+      />
+    </>
   );
 };
-export default  GamesContainer;
+export default GamesContainer;

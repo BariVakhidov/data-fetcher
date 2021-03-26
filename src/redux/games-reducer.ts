@@ -1,19 +1,19 @@
-import { Game, GamesState } from "../types/interfaces";
-import { AppThunk } from "./store";
-import { gamesAPI } from "../api/api";
-import { dateConvertorForAPI } from "../functions";
-import { GamesReducerActions } from "../types/games-reducer-actions";
-import { batch } from "react-redux";
+import { batch } from 'react-redux';
+import { Game, GamesState } from '../types/interfaces';
+import { AppThunk } from './store';
+import { gamesAPI } from '../api/api';
+import { dateConvertorForAPI } from '../functions';
+import { GamesReducerActions } from '../types/games-reducer-actions';
 
 export enum Actions {
-  SET_GAMES = "data-fetcher/games/SET_GAMES",
-  SET_PAGE = "data-fetcher/games/SET_PAGE",
-  SET_START_DATE = "data-fetcher/games/SET_START_DATE",
-  SET_END_DATE = "data-fetcher/games/SET_END_DATE",
-  SET_CURRENT_PAGE = "data-fetcher/games/SbatchET_CURRENT_PAGE",
-  SET_TOTAL_GAMES = "data-fetcher/games/SET_TOTAL_GAMES",
-  TOGGLE_IS_FETCHING = "data-fetcher/games/TOGGLE_IS_FETCHING",
-  SET_ERROR = "data-fetcher/games/SET_ERROR",
+  SET_GAMES = 'data-fetcher/games/SET_GAMES',
+  SET_PAGE = 'data-fetcher/games/SET_PAGE',
+  SET_START_DATE = 'data-fetcher/games/SET_START_DATE',
+  SET_END_DATE = 'data-fetcher/games/SET_END_DATE',
+  SET_CURRENT_PAGE = 'data-fetcher/games/SbatchET_CURRENT_PAGE',
+  SET_TOTAL_GAMES = 'data-fetcher/games/SET_TOTAL_GAMES',
+  TOGGLE_IS_FETCHING = 'data-fetcher/games/TOGGLE_IS_FETCHING',
+  SET_ERROR = 'data-fetcher/games/SET_ERROR',
 }
 
 export const setGames = (games: Array<Game>): GamesReducerActions => ({
@@ -55,12 +55,12 @@ const initialState: GamesState = {
   totalGames: 0,
   startDate: new Date(2018, 1, 1),
   endDate: new Date(),
-  error: "",
+  error: '',
 };
 
 const gamesReducer = (
   state: GamesState = initialState,
-  action: GamesReducerActions
+  action: GamesReducerActions,
 ): GamesState => {
   switch (action.type) {
     case Actions.SET_CURRENT_PAGE:
@@ -114,7 +114,7 @@ export const requestGames = (
   currentPage: number,
   pageSize: number,
   startDate: Date,
-  endDate: Date
+  endDate: Date,
 ): AppThunk => async (dispatch) => {
   batch(() => {
     dispatch(setCurrentPage(currentPage));
@@ -127,12 +127,12 @@ export const requestGames = (
       currentPage,
       pageSize,
       dateConvertorForAPI(startDate),
-      dateConvertorForAPI(endDate)
+      dateConvertorForAPI(endDate),
     );
-    batch(()=> {
+    batch(() => {
       dispatch(setGames(response.data.data));
-      dispatch(setTotalGames(response.data.meta.total_count));
-    })
+      dispatch(setTotalGames(response.data.meta.totalCount));
+    });
   } catch (error) {
     dispatch(setError(error.message));
   } finally {

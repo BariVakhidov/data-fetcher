@@ -4,22 +4,22 @@ export interface Team {
   city: string;
   conference: string;
   division: string;
-  full_name: string;
+  fullName: string;
   name: string;
 }
 
 export interface Game {
   id: number;
   date: string;
-  home_team_score: number;
-  visitor_team_score: number;
+  homeTeamScore: number;
+  visitorTeamScore: number;
   season: number;
   period: number;
   status: string;
   time: string;
   postseason: boolean;
-  home_team: Team;
-  visitor_team: Team;
+  homeTeam: Team;
+  visitorTeam: Team;
 }
 
 export interface GamesState {
