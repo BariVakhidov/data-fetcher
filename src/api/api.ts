@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios';
 import { GetGamesResponse, GetTeamsResponse } from '../types/api-response';
 import { Team } from '../types/interfaces';
 import { instance } from './axios-instance';
@@ -8,7 +9,7 @@ export const gamesAPI = {
     pageSize: number,
     startDate: string,
     endDate: string,
-  ) {
+  ):Promise<AxiosResponse<GetGamesResponse>> {
     return instance.get<GetGamesResponse>(
       `games?page=${currentPage}&per_page=${pageSize}&start_date=${startDate}&end_date=${endDate}`,
     );
@@ -16,12 +17,12 @@ export const gamesAPI = {
 };
 
 export const teamsAPI = {
-  getTeams(currentPage: number, pageSize: number) {
+  getTeams(currentPage: number, pageSize: number):Promise<AxiosResponse<GetTeamsResponse>> {
     return instance.get<GetTeamsResponse>(
       `teams?page=${currentPage}&per_page=${pageSize}`,
     );
   },
-  getTeam(id: number) {
+  getTeam(id: number):Promise<Team> {
     return instance.get<Team>(`teams/${id}`).then((response) => response.data);
   },
 };

@@ -8,6 +8,7 @@ module.exports = {
   entry: './src/index.tsx',
   devServer: {
     historyApiFallback: true,
+    hot: true,
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
