@@ -22,7 +22,7 @@ export const teamsAPI = {
       `teams?page=${currentPage}&per_page=${pageSize}`,
     );
   },
-  getTeam(id: number):Promise<Team> {
+  getTeam(id: string):Promise<Team> {
     return instance.get<Team>(`teams/${id}`).then((response) => response.data);
   },
 };

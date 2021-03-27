@@ -35,10 +35,7 @@ export const setCurrentPage = (pageNumber: number): GamesReducerActions => ({
 });
 
 export const setTotalGames = (totalGames: number): GamesReducerActions => ({
-  type: Actions.SET_TOTAL_GAMES,
-  totalGames,
-});
-
+  type: Actions.SET_TOTAL_GAMES, totalGames });
 export const toggleIsFetching = (isFetching: boolean): GamesReducerActions => ({
   type: Actions.TOGGLE_IS_FETCHING,
   isFetching,

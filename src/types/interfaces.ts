@@ -55,18 +55,33 @@ export interface GamesProps {
   error: string;
 }
 
-export interface TeamsProps extends TeamsState {
+export interface TeamsProps {
   requestTeams: (currentPage: number, pageSize: number) => void;
-  teamId:number | undefined,
-  requestTeam: (teamId:number)=> void
+  teams: Array<Team>;
+  totalTeams: number;
+  currentPage: number;
+  pageSize: number;
+  isFetching: boolean;
+  error:string;
 }
 
 export interface TeamProps extends Team {
   isTeamPage: boolean
 }
 
-export interface TeamsContainerProps extends TeamsState {
+export interface TeamsContainerProps extends RouteComponentProps<TeamsRouteProps> {
+  teams: Array<Team>;
+  totalTeams: number;
+  currentPage: number;
+  isFetching: boolean;
+  pageSize: number;
+  showingTeamId: number | null;
+  showingTeam: Team | null;
+  error:string;
   requestTeams: (currentPage: number, pageSize: number) => void;
-  requestTeam: (teamId:number)=> void,
-  match: RouteComponentProps,
+  requestTeam: (teamId:string)=> void,
+  match
+}
+export interface TeamsRouteProps {
+  teamId: string
 }

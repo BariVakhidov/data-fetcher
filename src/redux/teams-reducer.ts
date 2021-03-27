@@ -95,7 +95,7 @@ export const requestTeams = (currentPage:number, pageSize:number):AppThunk => as
   }
 };
 
-export const requestTeam = (teamId: number):AppThunk => async (dispatch) => {
+export const requestTeam = (teamId: string):AppThunk => async (dispatch) => {
   dispatch(toggleIsFetching(true));
   try {
     const data = await teamsAPI.getTeam(teamId);
