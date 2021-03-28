@@ -68,7 +68,7 @@ export interface TeamProps extends Team {
   isTeamPage: boolean
 }
 
-export interface TeamsContainerProps extends RouteComponentProps<TeamsRouteProps> {
+export interface TeamsContainerProps {
   teams: Array<Team>;
   totalTeams: number;
   currentPage: number;
@@ -79,7 +79,6 @@ export interface TeamsContainerProps extends RouteComponentProps<TeamsRouteProps
   error:string;
   requestTeams: (currentPage: number, pageSize: number) => void;
   requestTeam: (teamId:string)=> void,
-  match
 }
 export interface TeamsRouteProps {
   teamId: string

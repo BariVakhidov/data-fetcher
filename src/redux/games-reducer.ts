@@ -11,14 +11,14 @@ export enum Actions {
   SET_START_DATE = 'data-fetcher/games/SET_START_DATE',
   SET_END_DATE = 'data-fetcher/games/SET_END_DATE',
   SET_CURRENT_PAGE = 'data-fetcher/games/SET_CURRENT_PAGE',
-  SET_TOTAL_GAMES = 'data-fetcher/games/SET_TOTAL_GAMES',
   TOGGLE_IS_FETCHING = 'data-fetcher/games/TOGGLE_IS_FETCHING',
   SET_ERROR = 'data-fetcher/games/SET_ERROR',
 }
 
-export const setGames = (games: Array<Game>): GamesReducerActions => ({
+export const setGames = (games: Array<Game>, totalGames:number): GamesReducerActions => ({
   type: Actions.SET_GAMES,
   games,
+  totalGames,
 });
 export const setStartDate = (startDate: Date): GamesReducerActions => ({
   type: Actions.SET_START_DATE,
@@ -33,9 +33,6 @@ export const setCurrentPage = (pageNumber: number): GamesReducerActions => ({
   type: Actions.SET_CURRENT_PAGE,
   pageNumber,
 });
-
-export const setTotalGames = (totalGames: number): GamesReducerActions => ({
-  type: Actions.SET_TOTAL_GAMES, totalGames });
 export const toggleIsFetching = (isFetching: boolean): GamesReducerActions => ({
   type: Actions.TOGGLE_IS_FETCHING,
   isFetching,
@@ -69,10 +66,6 @@ const gamesReducer = (
       return {
         ...state,
         games: action.games,
-      };
-    case Actions.SET_TOTAL_GAMES:
-      return {
-        ...state,
         totalGames: action.totalGames,
       };
     case Actions.TOGGLE_IS_FETCHING:
@@ -127,8 +120,7 @@ export const requestGames = (
       dateConvertorForAPI(endDate),
     );
     batch(() => {
-      dispatch(setGames(response.data.data));
-      dispatch(setTotalGames(response.data.meta.totalCount));
+      dispatch(setGames(response.data.data, response.data.meta.totalCount));
       dispatch(toggleIsFetching(false));
     });
   } catch (error) {

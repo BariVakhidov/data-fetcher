@@ -4,6 +4,7 @@ import { Game } from './interfaces';
 interface SetGames {
   type: typeof Actions.SET_GAMES;
   games: Array<Game>;
+  totalGames: number;
 }
 
 interface SetPage {
@@ -22,11 +23,6 @@ interface SetEndDate {
   type: typeof Actions.SET_END_DATE;
   endDate: Date;
 }
-interface SetTotalGames {
-  type: typeof Actions.SET_TOTAL_GAMES;
-  totalGames: number;
-}
-
 interface ToggleIsFetching {
   type: typeof Actions.TOGGLE_IS_FETCHING;
   isFetching: boolean;
@@ -40,7 +36,6 @@ export type GamesReducerActions =
     | SetGames
     | SetCurrentPage
     | SetPage
-    | SetTotalGames
     | ToggleIsFetching
     | SetStartDate
     | SetEndDate

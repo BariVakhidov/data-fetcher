@@ -11,7 +11,7 @@ import Teams from './Teams';
 import TeamComponent from './Team/Team';
 import Preloader from '../common/Preloader/Preloader';
 
-const TeamsContainer:React.FC<TeamsContainerProps> = ({
+const TeamsContainer:React.FC<TeamsContainerProps & RouteComponentProps<TeamsRouteProps>> = ({
   match,
   teams,
   totalTeams,
