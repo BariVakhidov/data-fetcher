@@ -30,22 +30,26 @@ const TeamsContainer:React.FC<TeamsContainerProps> = ({
     if (teams.length === 0 && !teamId) requestTeams(currentPage, 8);
     if (teamId) {
       if (showingTeam === null) requestTeam(teamId);
-      if (showingTeam !== null) {
-        if (showingTeam.id !== parseInt(teamId)) requestTeam(teamId);
+      else if (showingTeam.id !== parseInt(teamId)) {
+        requestTeam(teamId);
       }
     }
-  }, [teamId]);
+  }, [teamId]); // teams and team request
 
-  if (teamId) {
-    if (isFetching) return <Preloader />;
-    if (showingTeam !== null) {
-      if (showingTeam.id !== parseInt(teamId)) return <Preloader />;
-    }
+  if (teamId) { // если кликнули на команду
+    if (isFetching || showingTeam === null) return <Preloader />;
+    if (showingTeam !== null && showingTeam.id !== parseInt(teamId)) return <Preloader />;
     if (error) return <div>{error}</div>;
     return (
       <TeamComponent
         isTeamPage
-        {...showingTeam}
+        division={showingTeam.division}
+        city={showingTeam.city}
+        abbreviation={showingTeam.abbreviation}
+        conference={showingTeam.abbreviation}
+        fullName={showingTeam.fullName}
+        id={showingTeam.id}
+        name={showingTeam.name}
       />
     );
   }
