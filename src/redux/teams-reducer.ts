@@ -18,7 +18,6 @@ export enum Actions {
 export const setTeams = (teams: Array<Team>, totalTeams:number): TeamsReducerActions => ({ type: Actions.SET_TEAMS, teams, totalTeams });
 export const setPage = (): TeamsReducerActions => ({ type: Actions.SET_PAGE });
 export const toggleIsFetching = (isFetching:boolean): TeamsReducerActions => ({ type: Actions.TOGGLE_IS_FETCHING, isFetching });
-export const setShowingTeamId = (showingTeamId: number): TeamsReducerActions => ({ type: Actions.SET_SHOWING_TEAM_ID, showingTeamId });
 export const setShowingTeam = (showingTeam: Team): TeamsReducerActions => ({ type: Actions.SET_SHOWING_TEAM, showingTeam });
 export const setCurrentPage = (pageNumber: number): TeamsReducerActions => ({ type: Actions.SET_CURRENT_PAGE, pageNumber });
 export const setError = (error:string):TeamsReducerActions => ({ type: Actions.SET_ERROR, error });
@@ -29,7 +28,6 @@ const initialState: TeamsState = {
   currentPage: 1,
   pageSize: 5,
   totalTeams: 0,
-  showingTeamId: null,
   showingTeam: null,
   error: '',
 };
@@ -51,11 +49,6 @@ const teamsReducer = (state: TeamsState = initialState,
     case Actions.TOGGLE_IS_FETCHING:
       return {
         ...state, isFetching: action.isFetching,
-      };
-    case Actions.SET_SHOWING_TEAM_ID:
-      return {
-        ...state,
-        showingTeamId: action.showingTeamId,
       };
     case Actions.SET_SHOWING_TEAM:
       return {

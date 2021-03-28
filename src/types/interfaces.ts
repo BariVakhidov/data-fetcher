@@ -40,7 +40,6 @@ export interface TeamsState {
   currentPage: number;
   isFetching: boolean;
   pageSize: number;
-  showingTeamId: number | null;
   showingTeam: Team | null;
   error:string;
 }

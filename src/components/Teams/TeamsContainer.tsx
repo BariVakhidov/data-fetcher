@@ -6,7 +6,6 @@ import { RootState } from '../../redux/store';
 import {
   requestTeam,
   requestTeams,
-  setShowingTeamId,
 } from '../../redux/teams-reducer';
 import Teams from './Teams';
 import TeamComponent from './Team/Team';
@@ -71,7 +70,6 @@ const mapStateToProps = (state: RootState): TeamsState => ({
   totalTeams: state.teams.totalTeams,
   currentPage: state.teams.currentPage,
   isFetching: state.teams.isFetching,
-  showingTeamId: state.teams.showingTeamId,
   showingTeam: state.teams.showingTeam,
   pageSize: 10,
   error: state.teams.error,
@@ -82,5 +80,4 @@ const TeamsContWhithRouter = withRouter<RouteComponentProps<TeamsRouteProps>>(Te
 export default connect<TeamsState>(mapStateToProps, {
   requestTeams,
   requestTeam,
-  setShowingTeamId,
 })(TeamsContWhithRouter);

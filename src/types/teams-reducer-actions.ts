@@ -21,10 +21,6 @@ interface SetCurrentPage {
   pageNumber: number;
 }
 
-interface SetShowingTeamId {
-  type: typeof Actions.SET_SHOWING_TEAM_ID;
-  showingTeamId: number;
-}
 interface SetShowingTeam {
   type: typeof Actions.SET_SHOWING_TEAM;
   showingTeam: Team;
@@ -38,7 +34,6 @@ export type TeamsReducerActions =
   | SetTeams
   | SetCurrentPage
   | SetPage
-  | SetShowingTeamId
   | SetShowingTeam
   | ToggleIsFetching
   | SetError;
