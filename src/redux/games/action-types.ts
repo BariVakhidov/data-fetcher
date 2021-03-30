@@ -1,10 +1,9 @@
-import { Actions } from '../redux/games-reducer';
-import { Game } from './interfaces';
+import { Actions } from '@Redux/games/constants';
+import { GetGames } from '@Types/api-response';
 
 interface SetGames {
   type: typeof Actions.SET_GAMES;
-  games: Array<Game>;
-  totalGames: number;
+  payLoad: GetGames
 }
 
 interface SetPage {
@@ -13,23 +12,23 @@ interface SetPage {
 
 interface SetCurrentPage {
   type: typeof Actions.SET_CURRENT_PAGE;
-  pageNumber: number;
+  payLoad: number;
 }
 interface SetStartDate {
   type: typeof Actions.SET_START_DATE;
-  startDate: Date;
+  payLoad: Date;
 }
 interface SetEndDate {
   type: typeof Actions.SET_END_DATE;
-  endDate: Date;
+  payLoad: Date;
 }
 interface ToggleIsFetching {
   type: typeof Actions.TOGGLE_IS_FETCHING;
-  isFetching: boolean;
+  payLoad: boolean;
 }
 interface SetError {
   type: typeof Actions.SET_ERROR;
-  error: string;
+  payLoad: string;
 }
 
 export type GamesReducerActions =

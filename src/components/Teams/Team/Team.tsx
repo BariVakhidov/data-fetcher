@@ -1,9 +1,9 @@
 import React from 'react';
 import cn from 'classnames';
-import { TeamProps } from '../../../types/interfaces';
+import { TeamProps } from '@Types/interfaces';
 import s from './Team.module.scss';
 
-const TeamComponent: React.FC<TeamProps> = ({
+const Team: React.FC<TeamProps> = ({
   isTeamPage, fullName, city, division, abbreviation, conference,
 }) => (
   <div className={cn(isTeamPage ? s.teamPage : s.team)}>
@@ -32,4 +32,4 @@ const TeamComponent: React.FC<TeamProps> = ({
     </div>
   </div>
 );
-export default TeamComponent;
+export default Team;

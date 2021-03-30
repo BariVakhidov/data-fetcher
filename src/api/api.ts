@@ -1,28 +1,35 @@
+import { URLS } from '@/constants';
 import { AxiosResponse } from 'axios';
+import * as qs from 'qs';
 import { GetGamesResponse, GetTeamsResponse } from '../types/api-response';
-import { Team } from '../types/interfaces';
+import { GetGamesParams, GetTeams, Team } from '../types/interfaces';
 import { instance } from './axios-instance';
 
 export const gamesAPI = {
-  getGames(
-    currentPage: number,
-    pageSize: number,
-    startDate: string,
-    endDate: string,
-  ):Promise<AxiosResponse<GetGamesResponse>> {
+  getGames({
+    currentPage, pageSize, startDate, endDate,
+  }:GetGamesParams):Promise<AxiosResponse<GetGamesResponse>> {
     return instance.get<GetGamesResponse>(
-      `games?page=${currentPage}&per_page=${pageSize}&start_date=${startDate}&end_date=${endDate}`,
+      `${URLS.GAMES}?${qs.stringify({
+        page: currentPage,
+        per_page: pageSize,
+        start_date: startDate,
+        end_date: endDate,
+      })}`,
     );
   },
 };
 
 export const teamsAPI = {
-  getTeams(currentPage: number, pageSize: number):Promise<AxiosResponse<GetTeamsResponse>> {
+  getTeams({ currentPage, pageSize }:GetTeams):Promise<AxiosResponse<GetTeamsResponse>> {
     return instance.get<GetTeamsResponse>(
-      `teams?page=${currentPage}&per_page=${pageSize}`,
+      `${URLS.TEAMS}?${qs.stringify({
+        page: currentPage,
+        per_page: pageSize,
+      })}`,
     );
   },
   getTeam(id: string):Promise<Team> {
-    return instance.get<Team>(`teams/${id}`).then((response) => response.data);
+    return instance.get<Team>(`${URLS.TEAMS}/${id}`).then((response) => response.data);
   },
 };

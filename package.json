@@ -13,8 +13,10 @@
 		"axios-case-converter": "^0.7.0",
 		"classnames": "^2.2.6",
 		"formik": "^2.2.6",
+		"qs": "^6.10.1",
 		"react": "^17.0.1",
 		"react-calendar": "^3.3.1",
+		"react-date-picker": "^8.1.1",
 		"react-dom": "^17.0.1",
 		"react-redux": "^7.2.2",
 		"react-router": "^5.2.0",
@@ -24,6 +26,8 @@
 		"webpack": "^5.26.3"
 	},
 	"devDependencies": {
+		"@types/classnames": "^2.2.11",
+		"@types/qs": "^6.9.6",
 		"@types/react": "^17.0.3",
 		"@types/react-dom": "^17.0.2",
 		"@types/react-redux": "^7.1.16",

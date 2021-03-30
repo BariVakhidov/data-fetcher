@@ -21,3 +21,11 @@ export interface GetTeamsResponse {
     totalCount: number
   }
 }
+export interface GetTeams {
+  teamsItems: Array<Team>;
+  totalTeams: number;
+}
+export interface GetGames {
+  gamesItems: Array<Game>;
+  totalGames: number;
+}

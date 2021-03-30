@@ -20,7 +20,7 @@
       text-align: center;
       span {
         align-self: center;
-      } 
+      }
       .side {
         align-self: center;
         background-color: rgb(250, 95, 95);
@@ -31,7 +31,7 @@
         grid-template-rows: 70% 30%;
         border-radius: 20px;
         .name {
-          margin: 0 10px;
+          margin: 0 1rem;
           justify-self: center;
           align-self: center;
           text-align: center;
@@ -41,9 +41,20 @@
           align-self: center;
         }
       }
-      .dateCont {
-        display: flex;
-        align-items: center;
+      .winner{
+        background-color: rgb(153, 228, 153); 
+      }
+      .loser {
+        background-color: rgb(250, 95, 95);
+      }
+    }
+    .dateCont {
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      img {
+        height: 1rem;
+        margin-right: 0.5rem;
       }
     }
   }

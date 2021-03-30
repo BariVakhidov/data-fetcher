@@ -1,4 +1,6 @@
-import { RouteComponentProps } from 'react-router';
+import { RootState } from '@Redux/store';
+import { Action } from 'redux';
+import { ThunkAction } from 'redux-thunk';
 
 export interface Team {
   id: number;
@@ -25,7 +27,7 @@ export interface Game {
 }
 
 export interface GamesState {
-  games: Array<Game>;
+  gamesItems: Array<Game>;
   totalGames: number;
   currentPage: number;
   isFetching: boolean;
@@ -35,17 +37,17 @@ export interface GamesState {
   error:string;
 }
 export interface TeamsState {
-  teams: Array<Team>;
+  teamsItems: Array<Team>;
   totalTeams: number;
   currentPage: number;
   isFetching: boolean;
   pageSize: number;
-  showingTeam: Team | null;
+  showingTeam: Team;
   error:string;
 }
 
 export interface GamesProps {
-  games: Array<Game>;
+  gamesItems: Array<Game>;
   totalGames: number;
   currentPage: number;
   startDate: Date;
@@ -55,8 +57,8 @@ export interface GamesProps {
 }
 
 export interface TeamsProps {
-  requestTeams: (currentPage: number, pageSize: number) => void;
-  teams: Array<Team>;
+  requestTeams: (params:GetTeams) => void;
+  teamsItems: Array<Team>;
   totalTeams: number;
   currentPage: number;
   pageSize: number;
@@ -68,18 +70,61 @@ export interface TeamProps extends Team {
   isTeamPage: boolean
 }
 
-export interface TeamsContainerProps {
-  teams: Array<Team>;
+export interface TeamsListContainerProps {
+  teamsItems: Array<Team>;
   totalTeams: number;
   currentPage: number;
   isFetching: boolean;
   pageSize: number;
-  showingTeamId: number | null;
-  showingTeam: Team | null;
+  showingTeam: Team;
   error:string;
-  requestTeams: (currentPage: number, pageSize: number) => void;
-  requestTeam: (teamId:string)=> void,
+  requestTeams: (params:GetTeams) => void;
 }
 export interface TeamsRouteProps {
   teamId: string
+}
+
+export interface TeamContainerProps {
+  isFetching: boolean;
+  showingTeam: Team;
+  error:string;
+  requestTeam: (teamId:string)=> void,
+}
+export interface GetGamesParams {
+  currentPage: number,
+  pageSize: number,
+  startDate: string,
+  endDate: string,
+}
+export interface RequestGamesParams {
+  currentPage: number,
+  pageSize: number,
+  startDate: Date,
+  endDate: Date,
+}
+export interface GetTeams {
+  currentPage: number;
+  pageSize: number;
+}
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,
+RootState,
+unknown,
+Action<string>>;
+
+export interface TeamsListWrapperProps {
+  teamsItems: Array<Team>,
+  isFetching:boolean,
+  error:string,
+}
+export interface PaginationProps {
+  portionSize?: number;
+  totalItems: number;
+  pageSize: number;
+  currentPage: number;
+  onPageChange: (page: number) => void;
+}
+export interface GamesListWrapperProps {
+  gamesItems: Array<Game>,
+  isFetching:boolean,
+  error: string,
 }

@@ -1,18 +1,12 @@
-import {
-  Action, applyMiddleware, combineReducers, compose, createStore,
+import { applyMiddleware, combineReducers, compose, createStore,
 } from 'redux';
-import thunkMiddleware, { ThunkAction } from 'redux-thunk';
-import gamesReducer from './games-reducer';
-import teamsReducer from './teams-reducer';
-
-export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,
-RootState,
-unknown,
-Action<string>>;
+import thunkMiddleware from 'redux-thunk';
+import gamesReducer from './games/reducer';
+import teamsReducer from './teams/reducer';
 
 const rootReducer = combineReducers({
   games: gamesReducer,
-  teams: teamsReducer
+  teams: teamsReducer,
 });
 export type RootState = ReturnType<typeof rootReducer>;
 

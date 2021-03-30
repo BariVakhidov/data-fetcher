@@ -5,3 +5,8 @@ export const navItems = [
   { to: '/not-found', name: 'Players' },
   { to: '/not-found', name: 'Season Averages' },
 ];
+
+export const URLS = {
+  GAMES: 'games',
+  TEAMS: 'teams',
+};

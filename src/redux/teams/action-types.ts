@@ -1,15 +1,15 @@
-import { Actions } from '../redux/teams-reducer';
-import { Team } from './interfaces';
+import { Actions } from '@Redux/teams/constants';
+import { GetTeams } from '@Types/api-response';
+import { Team } from '../../types/interfaces';
 
 interface SetTeams {
   type: typeof Actions.SET_TEAMS;
-  teams: Array<Team>;
-  totalTeams: number;
+  payLoad: GetTeams
 }
 
 interface ToggleIsFetching {
   type: typeof Actions.TOGGLE_IS_FETCHING;
-  isFetching: boolean;
+  payLoad: boolean;
 }
 
 interface SetPage {
@@ -18,16 +18,16 @@ interface SetPage {
 
 interface SetCurrentPage {
   type: typeof Actions.SET_CURRENT_PAGE;
-  pageNumber: number;
+  payLoad: number;
 }
 
 interface SetShowingTeam {
   type: typeof Actions.SET_SHOWING_TEAM;
-  showingTeam: Team;
+  payLoad: Team;
 }
 interface SetError {
   type: typeof Actions.SET_ERROR;
-  error: string;
+  payLoad: string;
 }
 
 export type TeamsReducerActions =

@@ -1,10 +1,11 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+import TeamsListContainer from '@Components/Teams/TeamsListContainer';
+import Header from '@Components/Header/index';
+import Footer from '@Components/Footer';
 import './App.scss';
-import GamesContainer from './components/Games/GamesContainer';
-import TeamsContainer from './components/Teams/TeamsContainer';
+import GamesContainer from '@Components/Games/GamesContainer';
+import TeamContainer from '@Components/Teams/Team/TeamContainer';
 
 const App: React.FC = () => (
   <>
@@ -13,7 +14,8 @@ const App: React.FC = () => (
       <Switch>
         <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
         <Route path="/dashboard/:gameId?" render={() => <GamesContainer />} />
-        <Route path="/teams/:teamId?" render={() => <TeamsContainer />} />
+        <Route exact path="/teams/" render={() => <TeamsListContainer />} />
+        <Route path="/teams/:teamId" render={() => <TeamContainer />} />
         <Route
           path="*"
           render={() => (

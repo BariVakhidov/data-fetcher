@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
-import { dateConvertor, compare } from '../../../functions';
-import { Game } from '../../../types/interfaces';
+import { dateConvertor, compare } from '@/functions';
+import { Game } from '@Types/interfaces';
 import s from './Game.module.scss';
 
 const GameComponent: React.FC<Game> = ({
@@ -11,31 +12,17 @@ const GameComponent: React.FC<Game> = ({
     homeTeamScore,
     visitorTeamScore,
   );
-
+  const gameDate = useMemo(() => dateConvertor(date), [date]);
   return (
     <div className={s.game}>
       <div className={s.gameCont}>
         <div className={s.gameTeams}>
-          <div
-            className={s.side}
-            style={{
-              backgroundColor: isHomeTeamWinner
-                ? 'rgb(153, 228, 153)'
-                : 'rgb(250, 95, 95)',
-            }}
-          >
+          <div className={cn(s.side, isHomeTeamWinner ? s.winner : s.loser)}>
             <div className={s.name}><NavLink to={`/teams/${homeTeam.id}`}>{homeTeam.fullName}</NavLink></div>
             <div className={s.score}>{homeTeamScore}</div>
           </div>
           <span>:</span>
-          <div
-            className={s.side}
-            style={{
-              backgroundColor: isHomeTeamWinner
-                ? 'rgb(250, 95, 95)'
-                : 'rgb(153, 228, 153)',
-            }}
-          >
+          <div className={cn(s.side, isHomeTeamWinner ? s.loser : s.winner)}>
             <div className={s.name}><NavLink to={`/teams/${visitorTeam.id}`}>{visitorTeam.fullName}</NavLink></div>
             <div className={s.score}>{visitorTeamScore}</div>
           </div>
@@ -47,11 +34,9 @@ const GameComponent: React.FC<Game> = ({
         <div className={s.dateCont}>
           <img
             src="../../../assets/images/calendar.png"
-            alt=""
-            height={20}
-            style={{ marginRight: '10px' }}
+            alt="calendar"
           />
-          <span>{dateConvertor(date)}</span>
+          <span>{gameDate}</span>
         </div>
       </div>
     </div>
